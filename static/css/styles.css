@@ -1,0 +1,265 @@
+RESETS */
+.toggle{
+    padding: 9px;
+    margin-right: 10px;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:focus {
+    text-decoration: none !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif !important;
+    color: #6f6f6f !important;
+    font-weight:300 !important;
+    letter-spacing: 1px;
+    background-color: #efefef !important;
+    margin:0 1vw;
+}
+
+body {
+    max-width: 100%;
+}
+
+h1{
+    font-size: 35px;
+    font-weight: 300 !important;
+}
+
+h4{
+    font-size: 14px !important;
+    font-weight: 100 !important;
+}
+
+button, input[type=submit], input[type=button] {
+    background-color: #8DCEDB;
+    border: 1px solid #8DCEDB;
+    color: white !important;
+    border-radius: 0 !important;
+    height:37px;
+}
+
+button:focus {
+    outline-width: 0;
+}
+
+button:active {
+    background-color: #a2d4de !important;
+}
+
+button:hover {
+    background-color: #5bbbce;
+}
+
+div.btn a {
+    color: #fff;
+    text-decoration: none;
+}
+
+div.btn a:hover {
+    text-decoration: none;
+}
+
+.btn.active, .btn:active {
+    -webkit-box-shadow: inset 2px 3px 5px rgba(0,0,0,.25) !important;
+    box-shadow: inset 2px 3px 5px rgba(0,0,0,.25) !important;
+} /* Override for darker shadow */
+
+table {
+    border-collapse: collapse;
+}
+
+p.error {
+    color: #F81F18 !important;
+    font-style: italic !important;
+}
+
+input[type=text].insecure,
+input[type=email].insecure,
+input[type=password].insecure {
+    border: 1px solid #F81F18 !important;
+    color: #F81F18 !important;
+}
+
+p.note {
+    color: #ddd !important;
+    font-style: italic !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.content{
+    max-width:1920px;
+    margin:auto;
+}
+
+.container{
+  margin-top: 60px;
+}
+
+.sub-head{
+    font-size: 20px;
+}
+
+.title{
+    color: #fff;
+    text-align: center;
+    padding: 45px 0px 45px;
+    font-weight:bold !important;
+}
+
+.row{
+    width:95%;
+    padding:40px 2.5%;
+    margin:0 auto !important;
+}
+
+/* Chrome/Opera/Safari */
+::-webkit-input-placeholder { 
+  color: rgba(119, 119, 119, 0.7);
+}
+/* Firefox 19+ */
+::-moz-placeholder { 
+  color: rgba(119, 119, 119, 0.7);
+}
+/* IE 10+ */
+:-ms-input-placeholder { 
+  color: rgba(119, 119, 119, 0.7);
+}
+/* Firefox 18- */
+:-moz-placeholder { 
+  color: rgba(119, 119, 119, 0.7);
+}
+
+/* Table Sorter styles begin */
+table.tablesorter {
+    margin:10px 0pt 15px;
+    width: 100%;
+    text-align: left;
+}
+table.tablesorter thead tr {
+    background-color: #4E5B5E;
+    color: #fff;
+}
+table.tablesorter thead tr .header {
+    /* background-image: url(../images/bg.gif); */
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    min-width: 60px;
+}
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(../images/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(../images/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+    padding-right: 8px !important;
+}
+table.tablesorter tr th, table.tablesorter tr td {
+    border: 1px solid #8DCEDB;
+    word-break: break-word;
+}
+table.tablesorter tr th.bordered, table.tablesorter tr td.bordered {
+    border: 1px solid #8DCEDB !important;
+}
+/* Table sorter styles end */
+
+/* Flash messages */
+.flashes {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.notif-sub {
+    background: #fff;
+    border: solid 1px #dfdfdf;
+    height: auto;
+    margin: 110px;
+    margin-left: 10%;
+    min-width: 200px;
+    padding: 4px;
+    position: absolute;
+    width: 80%;
+    z-index: 2 !important;
+}
+/* End Flash */
+
+/* Loaders */
+.load-small {
+    height: 16px !important;
+    width: 20px !important;
+    background: url("../images/loader1.gif") no-repeat center center;
+}
+
+.loader {
+    background: url(../images/ring.svg) no-repeat;
+    background-size:contain;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+}
+/* End Loaders */
+
+.home .cta, .pricing .cta{
+    margin: 10px auto;
+    position: relative;
+    width: 100%;
+}
+ 
+.cta .btn {
+    background: #4D5B5E;
+    border: solid 1px #8DCEDB;
+    color: #fff;
+    border-radius: 0;
+    font-size: 19px;
+    display: block;
+    margin: 0 auto;
+    width: 165px;
+    line-height: 47px;
+    height: 62px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.cta .btn:hover {
+    background-color: #333;
+    color: #fff !important;
+}
+
+/* A JqueryUI override */
+
+.ui-icon {
+    cursor: pointer;
+}
+
+#act-display.ui-widget.ui-widget-content {
+    border: 1px solid #8DCEDB !important;
+    border-radius: 14px !important;
+    height: 28px !important;
+}
+
+#act-display .ui-widget-header {
+    border: none;
+}
+#main-cont{
+    overflow:auto;
+}
+/* End Overrides*/
+.tools{
+    margin-left:1em;
+}
+#docs{
+    width:100%;
+    height:100;
+    position:fixed;
+}
