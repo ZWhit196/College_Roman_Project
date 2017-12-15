@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block includes %}
+{% endblock %}
+
+{% set title = 'Error' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+
+    <div id="content">
+        <div id="error" class="container">
+            <h3>Error...</h3>
+            <p><span class="ui-icon ui-icon-info"></span> Error {{ err }}: {{ msg }} {% if err == 403 %}<a href="/login/">Login</a> for access.{% endif %}</p>
+        </div>
+    </div>
+    
+{% endblock %}

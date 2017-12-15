@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block includes %}
+{% endblock %}
+
+{% set title = 'Home' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="home">
+    <div class="container">
+        <div class="content">
+            <h3>Home Placeholder</h3>
+            <p>Welcome to the Roman Numeral Converter V2!</p>
+            <p>You are NOT logged in. <a href="/login/">Login here</a> or <a href="/register/">Register here</a>. </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

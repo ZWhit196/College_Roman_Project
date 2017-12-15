@@ -1,1 +1,10 @@
+.project
+.pydevproject
+.settings/
+
+__pycache__/
+views/__pycache__/
+
 /venv
+
+ConvAndUser.db

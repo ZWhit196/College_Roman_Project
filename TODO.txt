@@ -1,0 +1,11 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:TODO:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ - CSS Styling required, create component sheets.
+ - Add some tests.
+ - Set up conversion functions.
+ - Save to database.
+ - Save to user.
+ - Set up stats viewing.
+ - Set up user credentials updating.
+ 

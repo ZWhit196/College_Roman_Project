@@ -1,0 +1,14 @@
+<header>
+	<div class="top-bar">
+		<div class="pull-left">
+			<div class="logo">home home home</div>
+		</div>
+		<div class="pull-right nav">
+            {% if current_user.is_authenticated %}
+				<a href="{{url_for('url_router.logout')}}">Logout</a>
+			{% else %}
+				<a href="{{url_for('url_router.login')}}">Login</a>
+			{% endif %}
+		</div>
+	</div>
+</header>

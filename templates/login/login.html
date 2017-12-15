@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block includes %}
+{% endblock %}
+
+{% set title = 'Login' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<div id="login">
+    <div id="signin" class="container">
+        <form action="" method=post class="form-horizontal">
+            <h2>Login</h2>
+            <p>Enter the password to continue.</p>
+            <div class="input-group">
+                <div class="input">
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+                <div class="input">
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="input">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>

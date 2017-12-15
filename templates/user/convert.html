@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block includes %}
+    <!-- <script src="{{ url_for('static', filename='js/home.js') }}"></script> -->
+{% endblock %}
+
+{% set title = 'Menu' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="home">
+    <div class="container">
+        <div class="content">
+            <h3>Convert</h3>
+            <div id="convert">
+                <p>Fill in the following fields and press "Convert" to get your conversion.</p>
+                <p class="note">
+                    For numbers of different bases, prefix as appropriate:<br/>
+                    Base 2 (Binary) = 0b<br/>
+                    Base 8 (Octal) = 0o (zero oh)<br/>
+                    Base 10 (Decimal) = (Any numbers 1-9)<br/>
+                    Base 16 (Hexadecimal) = 0x<br />
+                    Roman Numeral = (Any mix of M/D/C/L/X/V/I characters)
+                </p>
+                <div class="input-group">
+                    <div class="input">
+                        <label>Value for conversion:</label>
+                        <input id="value" name="value" type="text" placeholder="0x1A4">
+                    </div>
+                    
+                    <div class="input">
+                        <button class="btn">Convert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
