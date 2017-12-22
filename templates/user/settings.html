@@ -15,22 +15,30 @@
     var theme = "{{ current_user.Theme }}";
 </script>
 <div id="content" class="content">
-    <h3>Menu</h3>
+    <h1>Menu</h1>
     <div>
         <form action="" method="post">
-            <h3>Password change:</h3>
-            <input id="password" name="password" type="password" placeholder="********">
-            <h3>Name change:</h3>
-            <input id="name" name="name" type="text" placeholder="Name">
-            <h3>Theme:</h3>
-            <input id="theme" name="theme" type="hidden" value="{{ current_user.Theme }}">
-            <select id="theme-select">
-                <option>Standard Light</option>
-                <option>Dark</option>
-                <option>High Contrast</option>
-                <option>????</option>
-            </select>
-            <input class="btn" id="update" name="update" type="submit" value="Update user settings.">
+            <div class="input">
+                <h3>Password change:</h3>
+                <input id="password" name="password" type="password" placeholder="********">
+            </div>
+            <div class="input">
+                <h3>Name change:</h3>
+                <input id="name" name="name" type="text" placeholder="Name">
+            </div>
+            <div class="input">
+                <h3>Theme:</h3>
+                <input id="theme" name="theme" type="hidden" value="{{ current_user.Theme }}">
+                <select id="theme-select">
+                    <option>Standard Light</option>
+                    <option>Dark</option>
+                    <option>High Contrast</option>
+                    <option>????</option>
+                </select>
+            </div>
+            <div class="input">
+                <input class="btn" id="update" name="update" type="submit" value="Update user settings.">
+            </div>
         </form>
     </div>
 </div>

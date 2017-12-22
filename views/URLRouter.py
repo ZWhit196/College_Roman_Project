@@ -144,4 +144,4 @@ def stats():
 			nums_list.append(n)
 		ret = {'Numbers': nums_list, 'Times': days_list}
 		return json.dumps( ret )
-	return render_template('stats.html')
+	return render_template('user/stats.html')
