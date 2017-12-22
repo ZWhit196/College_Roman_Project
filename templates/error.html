@@ -11,10 +11,10 @@
 
 {% block content %}
 
-    <div id="content">
-        <div id="error" class="container">
+    <div id="content" class="content">
+        <div id="error">
             <h3>Error...</h3>
-            <p><span class="ui-icon ui-icon-info"></span> Error {{ err }}: {{ msg }} {% if err == 403 %}<a href="/login/">Login</a> for access.{% endif %}</p>
+            <p><span class="ui-icon ui-icon-info"></span> Error {{ err }}: {{ msg }} {% if err == 401 %}<a href="/login/">Login</a> for access.{% endif %}</p>
         </div>
     </div>
     

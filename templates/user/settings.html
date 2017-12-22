@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block includes %}
+    <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}
+
+{% set title = 'Menu' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<script>
+    var theme = "{{ current_user.Theme }}";
+</script>
+<div id="content" class="content">
+    <h3>Menu</h3>
+    <div>
+        <form action="" method="post">
+            <h3>Password change:</h3>
+            <input id="password" name="password" type="password" placeholder="********">
+            <h3>Name change:</h3>
+            <input id="name" name="name" type="text" placeholder="Name">
+            <h3>Theme:</h3>
+            <input id="theme" name="theme" type="hidden" value="{{ current_user.Theme }}">
+            <select id="theme-select">
+                <option>Standard Light</option>
+                <option>Dark</option>
+                <option>High Contrast</option>
+                <option>????</option>
+            </select>
+            <input class="btn" id="update" name="update" type="submit" value="Update user settings.">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

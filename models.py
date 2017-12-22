@@ -7,7 +7,8 @@ class User(db.Model):
 	Email = db.Column(db.String(256), primary_key=True, unique=True)
 	Name = db.Column(db.String(256))
 	Password = db.Column(db.String(256))
-	_Results = db.relationship('Result', backref='User', primaryjoin='User.Email==Result.User_email' )
+	Theme = db.Column(db.String(256), default="Standard Light")
+	_Results = db.relationship('Result', backref='User', primaryjoin='User.Name==Result.UserName' )
 	
 	def __init__(self, email, name, password):
 		self.Email = email.lower()
@@ -32,7 +33,16 @@ class User(db.Model):
 	# Login manager end
 
 	def set_password(self, password):
-		self.Password = pbkdf2_sha256.encrypt(password, rounds=200000, salt_size=16)
+		if password != "" and password is not None:
+			self.Password = pbkdf2_sha256.encrypt(password, rounds=200000, salt_size=16)
+		
+	def set_name(self, name):
+		if name != "" and name is not None:
+			self.Name = name
+	
+	def set_theme(self, theme):
+		if theme != "" and theme is not None:
+			self.Theme = theme
 	
 	def verify_password(self, password):
 		return pbkdf2_sha256.verify(password, self.Password)
@@ -41,6 +51,13 @@ class User(db.Model):
 		self.set_password(password)
 		db.session.add(self)
 		db.session.commit()
+		
+	def update_details(self, nm, pw, tm):
+		self.set_password(pw)
+		self.set_name(nm)
+		self.set_theme(tm)
+		self.commit_this()
+		
 		
 	def commit_this(self):
 		db.session.add(self)
@@ -55,7 +72,7 @@ class Result(db.Model):
 		Results table model.
 	'''
 	Result_ID = db.Column('Result_ID', db.Integer, primary_key=True, nullable=False )
-	User_email = db.Column(db.String(256), db.ForeignKey('user.Email'), nullable=False )
+	UserName = db.Column(db.String(256), db.ForeignKey('user.Name'), nullable=False )
 	Original_value = db.Column(db.String(32), nullable=False )
 	Roman = db.Column( db.Float, nullable=False)
 	Base_value = db.Column(db.String(64), nullable=False )

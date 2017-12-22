@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block includes %}
-    <!-- <script src="{{ url_for('static', filename='js/home.js') }}"></script> -->
 {% endblock %}
 
 {% set title = 'Menu' %}
@@ -12,17 +11,13 @@
 
 {% block content %}
 <div id="content" class="home">
-    <div class="container">
-        <div class="content">
-            <h3>Menu</h3>
-            <ul>
-                <li><a href="/convert/">Convert</a></li>
-                <li><a href="#">Change name/password</a></li>
-                <li><a href="#">View stats</a></li>
-                <li><a href="/logout/">Logout</a></li>
-            </ul>
-        </div>
-    </div>
+    <h3>Menu</h3>
+    <ul>
+        <li><a href="/convert">Convert</a></li>
+        <li><a href="/stats">View stats</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/logout/">Logout</a></li>
+    </ul>
 </div>
 
 {% endblock %}

@@ -14,4 +14,6 @@ class DBInterface:
     def Update_password(self, u, p):
         u.update_password(p)
         
-    
+    def Get_all_data(self):
+        
+        return None

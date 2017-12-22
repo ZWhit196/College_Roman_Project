@@ -10,15 +10,16 @@
 {% endblock %}
 
 {% block content %}
-<div id="content" class="home">
-    <div class="container">
-        <div class="content">
-            <h3>Home Placeholder</h3>
-            <p>Welcome to the Roman Numeral Converter V2!</p>
-            <p>You are NOT logged in. <a href="/login/">Login here</a> or <a href="/register/">Register here</a>. </p>
-        </div>
+<div id="content" class="content">
+    <div>
+        <h3>Home Placeholder</h3>
+        <p>Welcome to the Roman Numeral Converter V2!</p>
+        {% if current_user.is_authenticated %}
+        <p>Enter <a href="/menu">HERE</a> and start converting!</p>
+        {% else %}
+        <p>You are NOT logged in. <a href="/login/">Login here</a> or <a href="/register/">Register here</a>. </p>
+        {% endif %}
     </div>
-
 </div>
 
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block includes %}
+    <script src="{{ url_for('static', filename='js/stats.js') }}"></script>
+{% endblock %}
+
+{% set title = 'Menu' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="content">
+    <h3>Stats</h3>
+    <div>
+        <div class="canvas-div">
+            <canvas id="use-on-time"></canvas>
+        </div>
+        <div class="canvas-div">
+            <canvas id="popular-conversion"></canvas>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

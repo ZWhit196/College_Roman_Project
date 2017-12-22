@@ -1,0 +1,191 @@
+/* Standard theming */
+/* Main body styles */
+html, body {
+    background-color: #efefef;
+    color: #6f6f6f;
+    font-family: 'Helvetica Neue', sans-serif !important;
+    font-weight: 300 !important;
+    height: 100% !important;
+    margin: 0;
+    letter-spacing: 1px !important;
+}
+
+body {
+    max-width: 100% !important;
+}
+
+
+
+/* Headers */
+header {
+    padding: 10px;
+}
+
+.top-bar {
+    height: 50px;
+    position: relative !important;
+    width: 100%;
+}
+
+.top-bar .pull-left {
+    float: left;
+}
+
+.top-bar .pull-right {
+    float: right;
+}
+
+h1 {
+    font-size: 35px !important;
+    font-weight: 300 !important;
+}
+
+h4 {
+    font-size: 14px !important;
+    font-weight: 100 !important;
+}
+
+
+
+/* Text styles */
+a {
+    cursor: pointer !important;
+}
+
+a:focus {
+    text-decoration: none !important;
+}
+
+p.error {
+    color: #f81f18;
+    font-style: italic !important;
+}
+
+p.note {
+    color: #ddd !important;
+    font-style: italic !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+
+
+/* Button styling */
+.btn {
+    background-color: #8bcfdc;
+    border: 1px solid #8bcfdc;
+    border-radius: 4px;
+    color: #fff;
+    height: 37px;
+    min-width: 100px;
+}
+
+.btn:focus {
+    outline-width: 0 !important;
+}
+
+.btn:active {
+    background-color: #a2d4de;
+    -webkit-box-shadow: inset 2px 3px 5px rgba(0,0,0,.25);
+    box-shadow: inset 2px 3px 5px rgba(0,0,0,.25);
+}
+
+.btn:hover {
+    background-color: #5bbbce;
+}
+
+
+
+/* Table styles */
+table {
+    border-collapse: collapse;
+}
+
+
+/* Input styling */
+select {
+    display: block;
+}
+
+input[type=text].insecure,
+input[type=email].insecure,
+input[type=password].insecure {
+    border: 1px solid #F81F18 !important;
+    color: #F81F18 !important;
+}
+
+::-webkit-input-placeholder { 
+    color: rgba(119, 119, 119, 0.7); /* Chrome/Opera/Safari */
+}
+
+::-moz-placeholder { 
+    color: rgba(119, 119, 119, 0.7); /* Firefox 19+ */
+}
+
+:-ms-input-placeholder { 
+    color: rgba(119, 119, 119, 0.7); /* IE 10+ */
+}
+
+:-moz-placeholder { 
+    color: rgba(119, 119, 119, 0.7); /* Firefox 18- */
+}
+
+
+
+/* Container classes */
+.content {
+    max-width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.input {
+    margin: 5px 0;
+}
+
+
+
+/* Flash messages */
+#flash-msg {
+    border: 1px solid #6f6f6f;
+    border-radius: 4px;
+    margin: 5px auto;
+    position: relative;
+    width: 60%;
+}
+
+.flashes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+}
+
+.notif-sub {
+    background: #fff;
+    border: solid 1px #dfdfdf;
+    height: auto;
+    margin: 110px;
+    margin-left: 10%;
+    min-width: 200px;
+    padding: 4px;
+    position: absolute;
+    width: 80%;
+}
+
+
+
+/* Loaders */
+.loader-small {
+    height: 16px !important;
+    width: 20px !important;
+    background: url("../images/loader1.gif") no-repeat center center;
+}
+
+
+
+/* A JqueryUI override */
+.ui-icon {
+    cursor: pointer;
+}

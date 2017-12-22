@@ -1,0 +1,30 @@
+/* Dark theme overrides */
+/* Main body */
+html, body {
+    background-color: #474747 !important;
+    color: #d8d8d8 !important;
+}
+
+
+
+/* Text */
+a {
+    color: #8bcfdc;
+}
+
+
+
+/* Buttons */
+.btn {
+    background-color: #d2d2d2;
+    border: 1px solid #d2d2d2;
+    color: #444;
+}
+
+.btn:active {
+    background-color: #f1f1f1 !important;
+}
+
+.btn:hover {
+    background-color: #a0a0a0 !important;
+}

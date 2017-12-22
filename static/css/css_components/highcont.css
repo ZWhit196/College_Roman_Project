@@ -1,0 +1,41 @@
+/* High contrast overrides */
+/* Main body */
+html, body {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+
+
+/* Text */
+a {
+    color: #fff;
+}
+
+p.error {
+    color: #fff !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+
+
+/* Buttons */
+.btn {
+    background-color: #000;
+    border: 3px solid #fff;
+    border-radius: 0 !important;
+    color: #fff;
+}
+
+.btn:active {
+    background-color: #fff !important;
+    color: #000 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.btn:hover {
+    background-color: #fff !important;
+    color: #000 !important;
+}
