@@ -94,7 +94,6 @@ def convert():
     data = request.data
     data = data.decode("utf-8")
     data = json.loads(data)
-    print(data)
     
     number = request.args.get("number",None,type=str)
     ts = time.time()

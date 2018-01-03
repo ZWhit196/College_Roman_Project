@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block includes %}
+    <script src="{{ url_for('static', filename='js/convert.js') }}"></script>
 {% endblock %}
 
 {% set title = 'Menu' %}
@@ -22,16 +23,16 @@
             Base 16 (Hexadecimal) = 0x<br />
             Roman Numeral = (Any mix of M/D/C/L/X/V/I characters)
         </p>
-        <form action="" method="post">
+        <div id="converter">
             <div class="input">
                 <label>Value for conversion:</label>
                 <input id="value" name="value" type="text" placeholder="0x1A4">
             </div>
             
             <div class="input">
-                <input class="btn" id="submit" name="submit" type="submit" value="Convert">
+                <button class="btn" id="submit">Convert</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
