@@ -118,46 +118,22 @@ def convert():
     else:
         return jsonify( {"base": conv.get("Base_value"), "val": conv.get('Roman') } )
 
-
-
 @url_router.route("/stats", methods=['GET','POST'])
 def stats():
     if request.method == "POST":
         data = Data_Interface.Interface().Get_stats_data()
         print(data)
-        
         return jsonify( data )
-        # Sort out the pull
-        
-        
-        
-# 		item_dict = {}
-# 		number_dict = {}
-# 		for item in data:
-# 			it = datetime.datetime.strftime( datetime.datetime.fromtimestamp(item['Time'] ) , "%d/%m/%Y")
-# 			if it in item_dict:
-# 				item_dict[ it ] += 1
-# 			else:
-# 				item_dict[ it ] = 1
-# 			num = item['Number']
-# 			if num in number_dict:
-# 				number_dict[ num ] += 1
-# 			else:
-# 				number_dict[ num ] = 1
-# 		days_list = []
-# 		nums_list = []
-# 		day_sort = sorted( list(item_dict.keys()) )
-# 		num_sort = sorted( list(number_dict.keys()) )
-# 		for day in day_sort:
-# 			l = []
-# 			l.append( day )
-# 			l.append( item_dict[day] )
-# 			days_list.append(l)
-# 		for num in num_sort:
-# 			n = []
-# 			n.append( num )
-# 			n.append( number_dict[num] )
-# 			nums_list.append(n)
-# 		ret = {'Numbers': nums_list, 'Times': days_list}
-# 		return json.dumps( ret )
     return render_template('user/stats.html')
+
+@url_router.route("/all_results", methods=["GET","POST"])
+def all_results():
+    if request.method == "POST":
+        data = request.data
+        data = data.decode("utf-8")
+        data = json.loads(data)
+        print(data)
+        page = data.get("get")
+        ret = Data_Interface.Interface().Get_all_data( 20, page )
+        return jsonify(ret)
+    return render_template('user/all_results.html')

@@ -31,18 +31,25 @@ class Interface(query_base.QueryBase):
             vals.append(x[0])
             counts.append(x[1])
         tops = {"values": vals, "counts": counts}
-        
         # Set 2: past week usage chart - today ... today minus week - all()
         now = datetime.datetime.now()
-        print(now)
-        
-        
-        return {"top5":tops}
+        vols = []
+        dates = []
+        for x in range(7,-1,-1):
+            d = (now - datetime.timedelta( days=x )).strftime("%d/%m/%Y")
+            q = self.TableQueryName( d, Result, "Date" )
+            vols.append( len(q) )
+            dates.append( d )
+        weeks = { "volumes": vols, "dates": dates } 
+        # Return
+        return {"top5":tops,"weekUse":weeks}
     
     
-    def Get_all_data(self, page=1):
+    def Get_all_data(self, lim, page=0):
         # All database data paged - 20 per page
+        d = self.TablePagedResult( Result, lim, page*lim )
+        for r in d:
+            r['User'] = self.Serialise( r['User'], nolist=True )
+            r['User'].pop("Password")
+        return d
         
-        
-        return None
-    

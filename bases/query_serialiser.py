@@ -1,6 +1,6 @@
 class Serialiser():
     
-    def Serialise(self, obj):
+    def Serialise(self, obj, nolist=False):
         if obj is not None:
             serialised_results = []
             if type(obj) is list:
@@ -8,7 +8,10 @@ class Serialiser():
                 for n in obj:
                     serialised_results.append( self.To_dict(n) )
             else:
-                serialised_results.append( self.To_dict(obj) )
+                if nolist:
+                    return self.To_dict(obj)
+                else:
+                    serialised_results.append( self.To_dict(obj) )
             return serialised_results
         return obj
     

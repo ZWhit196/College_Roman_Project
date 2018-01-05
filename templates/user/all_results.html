@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block includes %}
+    <script src="{{ url_for('static', filename='js/all_results.js') }}"></script>
+{% endblock %}
+
+{% set title = 'Menu' %}
+
+{% block header %}
+    {% include 'header.html'%}
+{% endblock %}
+
+{% block content %}
+<div id="content" class="content">
+    <h1>All records</h1>
+    <div>
+        <div id="all">
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

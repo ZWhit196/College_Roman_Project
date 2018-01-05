@@ -39,15 +39,18 @@ class QueryBase(Serialiser):
                 if len(search) > 1:
                     final = []
                     for name in search:
-                    	final.append( self.Serialise( Table.query.filter( getattr(Table, Name)==name ).first() ) )
+                    	final.append( self.Serialise( Table.query.filter( getattr(Table, Name)==name ).all() ) )
                     return final
-                return self.Serialise( Table.query.filter( getattr(Table, Name)==search[0] ) )
+                return self.Serialise( Table.query.filter( getattr(Table, Name)==search[0] ).all() )
             else:
-                ret = self.Serialise( Table.query.filter( getattr(Table, Name)==search ).first() )
-                if ret is not None:
-                    return ret[0]
+                ret = self.Serialise( Table.query.filter( getattr(Table, Name)==search ).all() )
                 return ret
         return None
+    
+    def TablePagedResult(self, Table, lim=20, page=0):
+        d = self.Serialise( Table.query.limit( lim ).offset( page ).all() )
+        
+        return d
     
     def TableTopX(self, search, Table, lim=10):
         '''
