@@ -12,23 +12,8 @@ $(document).ready(function($) {
 
 function CallCharts(data) {
 	console.log("data", typeof data, data);
-	var tls = [], nls = [];
-	var tvl = [], nvl = [];
-	var ts = data.Times;
-	var ns = data.Numbers;
-// 	console.log(ts, ns);
-	for (x=0;x<ts.length;x++) {
-		tls.push( ts[x][0] );
-		tvl.push( ts[x][1] );
-	}
-	for (x=0;x<ns.length;x++) {
-		nls.push( ns[x][0] );
-		nvl.push( ns[x][1] );
-	}
-// 	console.log(nls, nvl);
-// 	console.log(tls, tvl);
-	buildLineChart(tls, tvl, "use-on-time", "green");
-	buildBarChart(nls, nvl, "popular-conversion", "blue");
+	var time_keys = data.weekUse.dates, time_vals = data.weekUse.volumes; // time datasets
+	var vol_keys = data.top5.values, vol_vals = data.top5.counts; // volume datasets
+	if (time_keys && time_vals) BuildLineChart(time_keys, time_vals, "use-on-time", "green");
+	if (vol_keys && vol_vals) BuildBarChart(vol_keys, vol_vals, "popular-conversion", "blue");
 }
-
-
