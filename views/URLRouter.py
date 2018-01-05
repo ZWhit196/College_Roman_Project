@@ -132,7 +132,6 @@ def all_results():
         data = request.data
         data = data.decode("utf-8")
         data = json.loads(data)
-        print(data)
         page = data.get("get")
         ret = Data_Interface.Interface().Get_all_data( 20, page )
         return jsonify(ret)
