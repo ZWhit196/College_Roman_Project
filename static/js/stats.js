@@ -11,8 +11,7 @@ $(document).ready(function($) {
 
 
 function CallCharts(data) {
-// 	console.log("data", typeof data, data);
-	data = JSON.parse(data);
+	console.log("data", typeof data, data);
 	var tls = [], nls = [];
 	var tvl = [], nvl = [];
 	var ts = data.Times;

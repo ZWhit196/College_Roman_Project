@@ -107,7 +107,6 @@ def convert():
     conv = VI.Evaluate_value(number)
     if conv is None:
         return Get_error("DATA")
-    print(conv)
     
     # then, add to db first
     DB = Data_Interface.Interface()
@@ -123,39 +122,42 @@ def convert():
 
 @url_router.route("/stats", methods=['GET','POST'])
 def stats():
-	if request.method == "POST":
-		data = Data_Interface.Interface().Get_all_data()
-		print(data)
-		
+    if request.method == "POST":
+        data = Data_Interface.Interface().Get_stats_data()
+        print(data)
+        
+        return jsonify( data )
         # Sort out the pull
         
-		item_dict = {}
-		number_dict = {}
-		for item in data:
-			it = datetime.datetime.strftime( datetime.datetime.fromtimestamp(item['Time'] ) , "%d/%m/%Y")
-			if it in item_dict:
-				item_dict[ it ] += 1
-			else:
-				item_dict[ it ] = 1
-			num = item['Number']
-			if num in number_dict:
-				number_dict[ num ] += 1
-			else:
-				number_dict[ num ] = 1
-		days_list = []
-		nums_list = []
-		day_sort = sorted( list(item_dict.keys()) )
-		num_sort = sorted( list(number_dict.keys()) )
-		for day in day_sort:
-			l = []
-			l.append( day )
-			l.append( item_dict[day] )
-			days_list.append(l)
-		for num in num_sort:
-			n = []
-			n.append( num )
-			n.append( number_dict[num] )
-			nums_list.append(n)
-		ret = {'Numbers': nums_list, 'Times': days_list}
-		return json.dumps( ret )
-	return render_template('user/stats.html')
+        
+        
+# 		item_dict = {}
+# 		number_dict = {}
+# 		for item in data:
+# 			it = datetime.datetime.strftime( datetime.datetime.fromtimestamp(item['Time'] ) , "%d/%m/%Y")
+# 			if it in item_dict:
+# 				item_dict[ it ] += 1
+# 			else:
+# 				item_dict[ it ] = 1
+# 			num = item['Number']
+# 			if num in number_dict:
+# 				number_dict[ num ] += 1
+# 			else:
+# 				number_dict[ num ] = 1
+# 		days_list = []
+# 		nums_list = []
+# 		day_sort = sorted( list(item_dict.keys()) )
+# 		num_sort = sorted( list(number_dict.keys()) )
+# 		for day in day_sort:
+# 			l = []
+# 			l.append( day )
+# 			l.append( item_dict[day] )
+# 			days_list.append(l)
+# 		for num in num_sort:
+# 			n = []
+# 			n.append( num )
+# 			n.append( number_dict[num] )
+# 			nums_list.append(n)
+# 		ret = {'Numbers': nums_list, 'Times': days_list}
+# 		return json.dumps( ret )
+    return render_template('user/stats.html')

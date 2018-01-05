@@ -1,4 +1,5 @@
-from bases.query_serialiser import Serialiser 
+from bases.query_serialiser import Serialiser
+from Database import db 
 from models import *
 
 
@@ -48,23 +49,21 @@ class QueryBase(Serialiser):
                 return ret
         return None
     
-    
-    # DOUBLE TABLE QUERYING
-    def TwoTableQuery(self, search, Table, Link, Linked, ID, TID=None, Tsearch=None):
+    def TableTopX(self, search, Table, lim=10):
         '''
-            Search tables which are linked.
+        Top <lim> <search>/<group_alt> results by volume 
         '''
         if search is not None:
-            item_list = []
-            for id in search:
-                if TID is not None:
-                    obj = Table.query.join( getattr(Table, Link) ).filter( getattr(Linked, ID)==id, getattr(Table, TID)==Tsearch ).all()
-                else:
-                    obj = Table.query.join( getattr(Table, Link) ).filter( getattr(Linked, ID)==id ).all()
-                item_list.append( obj )
-            return self.Serialise( item_list )
+            # A tad more complexy.
+            q = db.engine.execute("select {}, count(*) as volume from {} import group by {} order by count(*) desc limit {};".format(search, Table, search, lim) )
+            l = []
+            for r in q:
+                l.append([ r[0], r[1] ])
+            return l
         return None
     
+    
+#     # DOUBLE TABLE QUERYING
     def TwoTableQueryDirect(self, search, Table, Linked, ID, TID=None, Tsearch=None):
         '''
             As TwoTableQuery, but has direct Table join instead
@@ -81,46 +80,58 @@ class QueryBase(Serialiser):
             return self.Serialise( item_list )
         return None
     
-    # TRIPLE TABLE QUERYING
-    def RelationalTableQuery(self, search_1, search_2, Table, Link_1, Link_2, Linked_1, Linked_2, ID_1, ID_2):
-        '''
-            Three linked tables via association table searched with IDs provided.
-        '''
-        if search_1 is not None and search_2 is not None:
-            item_list = []
-            for s_1 in search_1:
-                for s_2 in search_2:
-                    obj = Table.query.join( getattr(Table,Link_1) ).join( getattr(Table,Link_2) ).filter( getattr(Linked_1,ID_1)==s_1, getattr(Linked_2,ID_2)==s_2 ).first()
-                    if obj is not None:
-                        item_list.append( obj )
-            return self.Serialise( item_list )
-        return None
-        
-    def ThreeTableQuery(self, search_1, search_2, Table, Linked_1, Linked_2, ID_1, ID_2):
-        '''
-            Three linked table searched with IDs provided.
-        '''
-        if search_1 is not None and search_2 is not None:
-            item_list = []
-            for id_1 in search_1:
-                for id_2 in search_2:
-                    obj = Table.query.join( Linked_1 ).join( Linked_2 ).filter( getattr(Linked_1,ID_1)==id_1, getattr(Linked_2,ID_2)==id_2 ).all()
-                    if obj is not None:
-                        item_list.append( obj )
-            return self.Serialise( item_list )
-        return None
+#     def TwoTableQuery(self, search, Table, Link, Linked, ID, TID=None, Tsearch=None):
+#         '''
+#             Search tables which are linked.
+#         '''
+#         if search is not None:
+#             item_list = []
+#             for id in search:
+#                 if TID is not None:
+#                     obj = Table.query.join( getattr(Table, Link) ).filter( getattr(Linked, ID)==id, getattr(Table, TID)==Tsearch ).all()
+#                 else:
+#                     obj = Table.query.join( getattr(Table, Link) ).filter( getattr(Linked, ID)==id ).all()
+#                 item_list.append( obj )
+#             return self.Serialise( item_list )
+#         return None
     
-    # RELATIONSHIP QUERYING
-    def RelationshipChecker(self, criteria_1, criteria_2, Table, Link, Linked, ID_1, ID_2):
-        '''
-            Checking for any existing relationship between two 
-            given IDs, return True for an existing relationship.
-        '''
-        if criteria_1 is not None and criteria_2 is not None:
-            result = Table.query.join( getattr(Table, Link) ).filter( getattr(Table, ID_1)==criteria_1[ID_1], getattr(Linked, ID_2)==criteria_2[ID_2] ).all()
-            if result is not None and len(result) > 0:
-                return True
-        return False
-    
-    
-    
+#     # TRIPLE TABLE QUERYING
+#     def RelationalTableQuery(self, search_1, search_2, Table, Link_1, Link_2, Linked_1, Linked_2, ID_1, ID_2):
+#         '''
+#             Three linked tables via association table searched with IDs provided.
+#         '''
+#         if search_1 is not None and search_2 is not None:
+#             item_list = []
+#             for s_1 in search_1:
+#                 for s_2 in search_2:
+#                     obj = Table.query.join( getattr(Table,Link_1) ).join( getattr(Table,Link_2) ).filter( getattr(Linked_1,ID_1)==s_1, getattr(Linked_2,ID_2)==s_2 ).first()
+#                     if obj is not None:
+#                         item_list.append( obj )
+#             return self.Serialise( item_list )
+#         return None
+#         
+#     def ThreeTableQuery(self, search_1, search_2, Table, Linked_1, Linked_2, ID_1, ID_2):
+#         '''
+#             Three linked table searched with IDs provided.
+#         '''
+#         if search_1 is not None and search_2 is not None:
+#             item_list = []
+#             for id_1 in search_1:
+#                 for id_2 in search_2:
+#                     obj = Table.query.join( Linked_1 ).join( Linked_2 ).filter( getattr(Linked_1,ID_1)==id_1, getattr(Linked_2,ID_2)==id_2 ).all()
+#                     if obj is not None:
+#                         item_list.append( obj )
+#             return self.Serialise( item_list )
+#         return None
+#     
+#     # RELATIONSHIP QUERYING
+#     def RelationshipChecker(self, criteria_1, criteria_2, Table, Link, Linked, ID_1, ID_2):
+#         '''
+#             Checking for any existing relationship between two 
+#             given IDs, return True for an existing relationship.
+#         '''
+#         if criteria_1 is not None and criteria_2 is not None:
+#             result = Table.query.join( getattr(Table, Link) ).filter( getattr(Table, ID_1)==criteria_1[ID_1], getattr(Linked, ID_2)==criteria_2[ID_2] ).all()
+#             if result is not None and len(result) > 0:
+#                 return True
+#         return False

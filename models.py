@@ -98,7 +98,7 @@ class Result(db.Model):
 		db.session.commit()
 	
 	def get_keys(self):
-		return ['Result_ID', 'User', 'Original_value', 'Roman', 'Base_value', 'Date']
+		return ['Result_ID', 'User', 'Value', 'Roman', 'Base_value', 'Date']
 	
 	def get_values(self):
 		return [ self.User, self.Value, self.Roman, self.Base_value, self.Date ]
