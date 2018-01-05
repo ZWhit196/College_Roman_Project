@@ -32,6 +32,7 @@ class User(db.Model):
 		return str(self.Email)
 	# Login manager end
 
+
 	def set_password(self, password):
 		if password != "" and password is not None:
 			self.Password = pbkdf2_sha256.encrypt(password, rounds=200000, salt_size=16)
@@ -65,7 +66,11 @@ class User(db.Model):
 		
 	def get_keys(self):
 		return ['Email', 'Name', 'Password']
+	
+	def get_values(self):
+		return [ self.Email, self.Name, self.Password, self.Theme ]
 
+		
 		
 class Result(db.Model):
 	'''
@@ -73,14 +78,14 @@ class Result(db.Model):
 	'''
 	Result_ID = db.Column('Result_ID', db.Integer, primary_key=True, nullable=False )
 	UserName = db.Column(db.String(256), db.ForeignKey('user.Name'), nullable=False )
-	Original_value = db.Column(db.String(32), nullable=False )
-	Roman = db.Column( db.Float, nullable=False)
+	Value = db.Column(db.String(32), nullable=False )
+	Roman = db.Column( db.String(32), nullable=False)
 	Base_value = db.Column(db.String(64), nullable=False )
 	Date = db.Column(db.String(64), nullable=False )
 	
-	def __init__(self, em, val, rom, base, date):
-		self.User = em
-		self.Original_value = val
+	def __init__(self, nm, val, rom, base, date):
+		self.User = nm
+		self.Value = val
 		self.Roman = rom
 		self.Base_value = base
 		self.Date = date
@@ -94,4 +99,7 @@ class Result(db.Model):
 	
 	def get_keys(self):
 		return ['Result_ID', 'User', 'Original_value', 'Roman', 'Base_value', 'Date']
+	
+	def get_values(self):
+		return [ self.User, self.Value, self.Roman, self.Base_value, self.Date ]
 	

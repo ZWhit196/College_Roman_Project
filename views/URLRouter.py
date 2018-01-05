@@ -1,14 +1,15 @@
 import traceback
-import time
+import datetime
 
-from flask import Blueprint, request, json, redirect, flash
+from flask import Blueprint, request, json, jsonify, redirect, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from flask.templating import render_template
 
 from helpers.error_helper import Get_error
 from models import User
 
-from helpers.Data_Interface import DBInterface
+from helpers import Data_Interface
+from helpers import Value_interpreter
 from flask.helpers import url_for
 
 url_router = Blueprint('url_router', __name__, template_folder='templates')
@@ -61,7 +62,7 @@ def register():
     password = request.form['password']
     existing_user = User.query.filter_by(Email=email.lower()).first()
     if existing_user is None:
-        DBInterface().Create_new_user(email, name, password)
+        Data_Interface.Interface().Create_new_user(email, name, password)
         return redirect(url_for('url_router.login'))
     flash("User email is already taken.")
     return redirect(url_for('url_router.register'))
@@ -90,26 +91,40 @@ def menu():
 def convert():
     if request.method == "GET":
         return render_template("user/convert.html")
-    name = current_user.Name
+
     data = request.data
     data = data.decode("utf-8")
     data = json.loads(data)
+    number = data.get("val")
+    try:
+        number = int(number)
+    except:
+        pass
+    ts = datetime.date.today().strftime("%d/%m/%Y")
     
-    number = request.args.get("number",None,type=str)
-    ts = time.time()
+    # convert
+    VI = Value_interpreter.Translator()
+    conv = VI.Evaluate_value(number)
+    if conv is None:
+        return Get_error("DATA")
+    print(conv)
     
-    print(name, number, ts)
-    # So, add to db first
-    # Then return to user
+    # then, add to db first
+    DB = Data_Interface.Interface()
+    DB.Create_result(current_user, ts, conv)
     
-    return json.dumps( {"lol": "no"} )
+    # then return to user
+    if conv['Base_value'] == "Roman":
+        return jsonify( {"base": conv.get("Base_value"), "val": conv.get('Value') } )
+    else:
+        return jsonify( {"base": conv.get("Base_value"), "val": conv.get('Roman') } )
 
 
 
 @url_router.route("/stats", methods=['GET','POST'])
 def stats():
 	if request.method == "POST":
-		data = DBInterface().Get_all_data()
+		data = Data_Interface.Interface().Get_all_data()
 		print(data)
 		
         # Sort out the pull

@@ -3,9 +3,30 @@ var chartColors = {
     green: 'rgb(6, 221, 135)', lightGreen: 'rgb(123, 237, 191)', lightGrey: 'rgb(229, 229, 229)', yellow: 'rgb(244,194,49)' 
 };
 var chartSelection = {}, gaugeSelection = {};
-
 var ajaxobj = null, callback = null, errorback = null, showncol = null;
 
+
+function SetAjaxArgs(o, c, e) { ajaxobj = o; callback = c; errorback = e; }
+
+function NullAjaxArgs() { ajaxobj = null; callback = null; errorback = null; }
+
+function AjaxCall() {
+    $.ajax({
+        url: window.location,
+        method: 'POST',
+        data: JSON.stringify( ajaxobj ),
+        contentType: 'application/json'
+    }).done(function(dt) {
+        callback(dt);
+        NullAjaxArgs();
+    }).fail(function(e) {
+        var m = JSON.parse(e.responseText).Message;
+        errorback( m, e.status );
+        NullAjaxArgs();
+    });
+}
+
+function CallError(m,s) { console.log(s+": "+m); alert("There was an issue retrieving your data: "+m); }
 
 function togglePassField(el) {
     // Toggle readability of password field given, switch between hidden text and readable text.
@@ -18,35 +39,7 @@ function togglePassField(el) {
     }
 }
 
-function SetAjaxArgs(o, c, e) { ajaxobj = o; callback = c; errorback = e; }
-
-function NullAjaxArgs() { ajaxobj = null; callback = null; errorback = null; }
-
-function ajaxCall(obj, callback, err) {
-    $.ajax({
-        url: window.location,
-        method: 'POST',
-        data: JSON.stringify( obj ),
-        contentType: 'application/json'
-    }).done(function(dt) {
-        NullAjaxArgs();
-        if (dt.Response == 400 || dt.Error) { // UPDATED - REMOVE IF STATEMENT
-            console.log("Failed processing");
-            err();
-        } else { callback(dt); }
-    }).fail(function() {
-        NullAjaxArgs();
-        console.log("Failed processing");
-        err();
-    });
-}
-
 function isMatch(str1, str2) { if (str1 == str2) { return true; } return false; }
-
-function sentimentEval( snt ) {
-//     return (Math.round(( snt*100) +"e+2")+"e-2"); // OLD METHOD
-    if (snt === null) { return snt; } return (Math.round( snt*100 ));
-}
 
 function isInArray(target, array) {
   for(var i = 0; i < array.length; i++) {
@@ -55,25 +48,8 @@ function isInArray(target, array) {
   return false; 
 }
 
-// http://stackoverflow.com/questions/4565112/javascript-how-to-find-out-if-the-user-browser-is-chrome/13348618#13348618
-function isChrome() {
-    var isChromium = window.chrome,
-        winNav = window.navigator,
-        vendorName = winNav.vendor,
-        isOpera = winNav.userAgent.indexOf("OPR") > -1,
-        isIEedge = winNav.userAgent.indexOf("Edge") > -1,
-        isIOSChrome = winNav.userAgent.match("CriOS");
-    if(isIOSChrome){ return true;
-    } else if(isChromium !== null && isChromium !== undefined && vendorName === "Google Inc." && isOpera == false && isIEedge == false) { return true;
-    } else { return false; }
-}
-
-// CURRENTLY UNUSED
-function buildLineChart(labels, data, elid, colour, restrAx) {
-    var YAobj;
-    if (restrAx) { YAobj = { ticks: { beginAtZero: false, fixedStepSize: 25, suggestedMax: 100, suggestedMin: -100 }, display: true,scaleLabel: {display: true}};
-    } else { YAobj = { display: true,scaleLabel: {display: true}}; }
-    
+function BuildLineChart(labels, data, elid, colour) {
+    var YAobj = { ticks: { beginAtZero: true }, display: true,scaleLabel: {display: true}};
     var config = {
         type: 'line',
         data: {
@@ -88,6 +64,7 @@ function buildLineChart(labels, data, elid, colour, restrAx) {
             }]
         },
         options: { 
+            legend: { display: false },
             responsive: true,
             title:{display:false,text:'Data'}, hover: {mode: 'nearest',intersect: true},
             scales: {xAxes: [{display: true,scaleLabel: {display: true,}}],
@@ -95,7 +72,31 @@ function buildLineChart(labels, data, elid, colour, restrAx) {
         }
     };
     var chart = new Chart(document.getElementById( elid ).getContext("2d"), config);
-    chartSelection[ elid ] = chart;
+}
+
+function BuildBarChart(labels, data, elid, colour) {
+    var YAobj = { ticks: { beginAtZero: true }, display: true,scaleLabel: {display: true}};
+    var config = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                borderWidth: 1,
+                backgroundColor: chartColors[colour],
+                borderColor: chartColors[colour],
+                data: data,
+                fill: false,
+            }]
+        },
+        options: { 
+            legend: { display: false },
+            responsive: true,
+            title:{display:false,text:'Data'}, hover: {mode: 'nearest',intersect: true},
+            scales: {xAxes: [{display: true,scaleLabel: {display: true,}}],
+                    yAxes: [YAobj]},
+        }
+    };
+    var chart = new Chart(document.getElementById( elid ).getContext("2d"), config);
 }
 
 function buildGauge(avg, id) {

@@ -9,6 +9,7 @@ from flask.templating import render_template
 
 from Database import db
 from models import User
+from helpers.error_helper import Get_error
 from views.URLRouter import url_router
 
 

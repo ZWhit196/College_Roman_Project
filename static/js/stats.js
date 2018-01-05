@@ -5,7 +5,7 @@ var chartColors = {
 
 
 $(document).ready(function($) {
-	SetAjaxArgs( {"get": "stats"}, CallCharts, CallError )
+	SetAjaxArgs( {"get": "stats"}, CallCharts, CallError );
 	AjaxCall();
 });
 

@@ -14,14 +14,15 @@
 <div id="content" class="content">
     <h1>Convert</h1>
     <div id="convert">
-        <p>Fill in the following fields and press "Convert" to get your conversion.</p>
+        <p>Fill in the field below and press "Convert" to get your conversion.</p>
         <p class="note">
             For numbers of different bases, prefix as appropriate:<br/>
             Base 2 (Binary) = 0b<br/>
             Base 8 (Octal) = 0o (zero oh)<br/>
-            Base 10 (Decimal) = (Any numbers 1-9)<br/>
-            Base 16 (Hexadecimal) = 0x<br />
-            Roman Numeral = (Any mix of M/D/C/L/X/V/I characters)
+            Base 16 (Hexadecimal) = 0x<br/><br/>
+            Conversion can also go from Roman to Base 10.<br/>
+            Roman Numeral = (Any mix of M/D/C/L/X/V/I characters)<br/><br/>
+            * MAXIMUMS: 5000 (decimal), 0o11610 (octal), 0x1388 (hexadecimal), 0b1001110001000 (binary) *
         </p>
         <div id="converter">
             <div class="input">
@@ -32,6 +33,8 @@
             <div class="input">
                 <button class="btn" id="submit">Convert</button>
             </div>
+            
+            <div id="result"></div>
         </div>
     </div>
 </div>
