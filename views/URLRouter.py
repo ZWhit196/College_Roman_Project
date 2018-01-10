@@ -126,7 +126,7 @@ def stats():
         return jsonify( data )
     return render_template('user/stats.html')
 
-@url_router.route("/all_results", methods=["GET","POST"])
+@url_router.route("/all_results", methods=["GET","POST"]) # Use query string for page number
 def all_results():
     if request.method == "POST":
         data = request.data

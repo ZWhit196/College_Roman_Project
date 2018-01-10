@@ -11,8 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css_components/dark.css')}}">
     {% elif current_user.Theme == "High Contrast" %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css_components/highcont.css')}}">
-    {% elif current_user.Theme == "????" %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css_components/experimental.css')}}">
     {% else %}
     {% endif %}
     
