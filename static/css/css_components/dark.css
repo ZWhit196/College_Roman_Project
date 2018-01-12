@@ -6,6 +6,12 @@ html, body {
 }
 
 
+/* Header */
+header {
+    border-bottom: 3px solid #474747;
+}
+
+
 
 /* Text */
 a {

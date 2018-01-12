@@ -1,4 +1,4 @@
-import traceback
+# import traceback
 import datetime
 
 from flask import Blueprint, request, json, jsonify, redirect, flash
@@ -129,10 +129,10 @@ def stats():
 @url_router.route("/all_results", methods=["GET","POST"]) # Use query string for page number
 def all_results():
     if request.method == "POST":
-        data = request.data
-        data = data.decode("utf-8")
-        data = json.loads(data)
-        page = data.get("get")
-        ret = Data_Interface.Interface().Get_all_data( 20, page )
-        return jsonify(ret)
+        page = request.args.get("page")
+        if not page:
+            page = 1
+        else:
+            page = int(page)
+        return jsonify( Data_Interface.Interface().Get_all_data( 20, page-1 ) )
     return render_template('user/all_results.html')

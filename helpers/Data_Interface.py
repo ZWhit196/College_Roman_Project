@@ -35,21 +35,18 @@ class Interface(query_base.QueryBase):
         now = datetime.datetime.now()
         vols = []
         dates = []
-        for x in range(7,-1,-1):
+        for x in range(7, -1, -1):
             d = (now - datetime.timedelta( days=x )).strftime("%d/%m/%Y")
             q = self.TableQueryName( d, Result, "Date" )
             vols.append( len(q) )
             dates.append( d )
-        weeks = { "volumes": vols, "dates": dates } 
-        # Return
-        return {"top5":tops,"weekUse":weeks}
+        weeks = { "volumes": vols, "dates": dates }
+        return { "top5": tops, "weekUse": weeks }
     
     
     def Get_all_data(self, lim, page=0):
         # All database data paged - 20 per page
         d = self.TablePagedResult( Result, lim, page*lim )
         for r in d:
-            r['User'] = self.Serialise( r['User'], nolist=True )
-            r['User'].pop("Password")
+            r.pop("UserEmail")
         return d
-        

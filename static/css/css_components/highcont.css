@@ -7,6 +7,12 @@ html, body {
 
 
 
+/* Header */
+header {
+    border-bottom: 3px solid #fff;
+}
+
+
 /* Text */
 a {
     color: #fff;
