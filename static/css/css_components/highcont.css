@@ -3,19 +3,26 @@
 html, body {
     background-color: #000 !important;
     color: #fff !important;
+    font-weight: bold !important;
 }
 
 
 
 /* Header */
 header {
-    border-bottom: 3px solid #fff;
+    border-bottom: 3px solid #fff !important;
+    font-weight: bold !important;
 }
 
 
 /* Text */
 a {
-    color: #fff;
+    color: #fff !important;
+    font-weight: bold !important;
+}
+
+p {
+    font-weight: bold !important;
 }
 
 p.error {
@@ -28,10 +35,13 @@ p.error {
 
 /* Buttons */
 .btn {
-    background-color: #000;
-    border: 3px solid #fff;
+    background-color: #000 !important;
+    border: 3px solid #fff !important;
     border-radius: 0 !important;
-    color: #fff;
+    color: #fff !important;
+    font-weight: bold !important;
+    height: 50px !important;
+    padding: 10px !important;
 }
 
 .btn:active {
@@ -44,4 +54,24 @@ p.error {
 .btn:hover {
     background-color: #fff !important;
     color: #000 !important;
+}
+
+
+
+/* Input */
+input[type=text], input[type=password], input[type=email], select {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    padding: 10px !important;
+}
+
+option {
+    font-weight: bold !important;
+}
+
+
+
+/* Table */
+table {
+    font-weight: bold !important;
 }

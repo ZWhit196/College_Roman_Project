@@ -119,6 +119,7 @@ def convert():
         return jsonify( {"base": conv.get("Base_value"), "val": conv.get('Roman') } )
 
 @url_router.route("/stats", methods=['GET','POST'])
+@login_required
 def stats():
     if request.method == "POST":
         data = Data_Interface.Interface().Get_stats_data()
@@ -127,12 +128,20 @@ def stats():
     return render_template('user/stats.html')
 
 @url_router.route("/all_results", methods=["GET","POST"]) # Use query string for page number
+@login_required
 def all_results():
-    if request.method == "POST":
-        page = request.args.get("page")
-        if not page:
-            page = 1
-        else:
-            page = int(page)
-        return jsonify( Data_Interface.Interface().Get_all_data( 20, page-1 ) )
-    return render_template('user/all_results.html')
+    page = request.args.get("page")
+    if not page:
+        page = 1
+    else:
+        page = int(page)
+        
+    data = Data_Interface.Interface().Get_all_data( 20, page-1 )
+    next = False
+    if len( Data_Interface.Interface().Get_all_data( 20, page ) ) > 0:
+        next = page+1
+    prev = False
+    if page > 1:
+        prev = page-1
+    
+    return render_template('user/all_results.html', data=data, page=str(page), prev=prev, next=next)

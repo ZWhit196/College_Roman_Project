@@ -170,6 +170,26 @@ input[type=password].insecure {
     margin: 5px 0;
 }
 
+div#pager {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: auto;
+    padding: 5px;
+    position: relative;
+}
+
+div#pager .prev {
+    float: left;
+}
+
+div#pager .next {
+    float: right;
+}
+
+div#pager .prev a, div#pager .next a {
+    text-decoration: none;
+}
+
 
 
 /* Flash messages */
