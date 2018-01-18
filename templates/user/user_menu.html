@@ -10,6 +10,30 @@
 {% endblock %}
 
 {% block content %}
+<script type='text/javascript'> 
+var colours = ['red','pink','orange','yellow','green','blue','cyan','dark-blue','purple'];
+
+function UhOh() {
+    var y = confirm("[[ EPILEPSY WARNING ]] No, stop it. Stop it now. You know you shouldn't be here.");
+    if (y) YouActuallyDidIt();
+}
+
+function YouActuallyDidIt() {
+    setInterval( colchange , 50 );
+};
+
+function colchange() {
+    var curr_colour=$("body").prop("class"), c=colours;
+    if (!curr_colour || ( c.indexOf(curr_colour)!=-1 )?true:false ) {
+        if (curr_colour) {
+            var c_ind = c.indexOf(curr_colour);
+            if (c_ind == c.length-1) $("body").prop("class", ""); 
+            else $("body").switchClass( c[c_ind], c[c_ind+1] );
+        } else $("body").addClass( c[0] );
+    }
+}
+</script>
+
 <div id="content" class="content">
     <h1>Menu</h1>
     <ul>
@@ -17,6 +41,7 @@
         <li><a href="/stats">View stats</a> - View some interesting statistics.</li>
         <li><a href="/settings">Settings</a> - Tweak some settings?</li>
         <li><a href="/logout/">Logout</a> - Sign out safely and securely.</li>
+        <li class="hidden"><a class="hidden" onclick="UhOh();">NO, DON'T DO IT.</a></li>
     </ul>
 </div>
 

@@ -55,6 +55,7 @@ h4 {
 
 /* Text styles */
 a {
+    color: #6f6f6f;
     cursor: pointer !important;
 }
 
@@ -233,4 +234,46 @@ div#pager .prev a, div#pager .next a {
 /* A JqueryUI override */
 .ui-icon {
     cursor: pointer;
+}
+
+/* You looked this far down here? */
+.hidden {
+    color: #efefef;
+    text-decoration: underline;
+}
+
+.red {
+    background-color: #FF0000 !important;
+    color: #fff;
+}
+.pink {
+    background-color: #FF69B4 !important;
+}
+.orange {
+    background-color: #EE7600 !important;
+}
+.yellow {
+    background-color: #FFFF00 !important;
+}
+.green {
+    background-color: #00FF00 !important;
+}
+.blue {
+    background-color: #0000FF !important;
+    color: #fff;
+}
+.cyan {
+    background-color: #00FFFF !important;
+}
+.dark-blue {
+    background-color: #000080 !important;
+    color: #fff;
+}
+.purple {
+    background-color: #551A8B !important;
+    color: #fff;
+}
+.grey {
+    background-color: #333 !important;
+    color: #fff;
 }
