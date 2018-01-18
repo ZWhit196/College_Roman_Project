@@ -51,4 +51,4 @@ if __name__ == "__main__":
     app = create_app()
     if not os.path.isfile('ConvAndUser.db'):
         setup_database(app)
-    app.run(host="0.0.0.0", port=80, debug=True)
+    app.run(host="0.0.0.0", port=8910, debug=True)
